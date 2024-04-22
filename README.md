@@ -1,7 +1,3 @@
-Here's a basic README template for your npm library "all-in-one" including usage instructions for the "log", "wrapper.response", and "wrapper.errorResponse" modules:
-
----
-
 # all-in-one
 
 This npm package provides utility modules for logging, handling response wrapping, and error response wrapping.
