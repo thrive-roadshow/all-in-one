@@ -6,7 +6,7 @@ const { NotFoundError, InternalServerError, BadRequestError, ConflictError, Expe
  
  const paginationData = (data, meta) => ({ err: null, data, meta});
  
- const errorResponse = (err) => ({ err, data: null });
+ const error = (err) => ({ err, data: null });
  
  const response = (res, type, result, message = '', responseCode = 200) => {
    let status = true;
@@ -78,7 +78,7 @@ const { NotFoundError, InternalServerError, BadRequestError, ConflictError, Expe
  module.exports = {
    data,
    paginationData,
-   errorResponse,
+   error,
    response,
    paginationResponse
  };
