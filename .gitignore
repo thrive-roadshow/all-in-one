@@ -1,0 +1,17 @@
+# temp files
+.DS_Store
+.tmp
+.sass-cache
+
+node_modules
+build/
+*~
+
+#IDE ignores
+.idea/
+
+*.log
+log
+.vscode
+
+package-lock.json
