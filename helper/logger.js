@@ -14,7 +14,7 @@ const Pino = require('pino')({
 const log = (tags, data) => {
   const logs = { tags };
   if (data) {
-    Object.assign(logs, { data ,...apm.currentTraceIds, reqId: req.correlationId()});
+    Object.assign(logs, { data ,...apm.currentTraceIds});
   }
 
   Pino.info(logs);
