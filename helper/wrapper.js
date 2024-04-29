@@ -20,8 +20,8 @@ const { NotFoundError, InternalServerError, BadRequestError, ConflictError, Expe
      code = result.err.code || errCode ;
      responseCode = errCode;
    }
-   res.send(responseCode,
-     {
+   res.status(responseCode).send(
+    {
        success: status,
        data,
        message,
@@ -37,7 +37,7 @@ const { NotFoundError, InternalServerError, BadRequestError, ConflictError, Expe
      data = '';
      message = result.err;
    }
-   res.send(code,
+   res.status(code).send(
      {
        success: status,
        data,

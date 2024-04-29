@@ -38,8 +38,8 @@ const initLogger = () => {
     const timeDiff = process.hrtime(req.startTime);
     const timeTaken = Math.round((timeDiff[0] * 1e9 + timeDiff[1]) / 1e6);
     const meta = {
-      'service.name': serviceName.service,
-      'service.version': serviceName.version,
+      'service.name': process.env.SERVICE_NAME,
+      'service.version': process.env.VERSION,
       'log.logger': 'restify',
       tags: ['audit-log'],
       'url.original': urlOriginal,
