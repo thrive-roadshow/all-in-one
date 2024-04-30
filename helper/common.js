@@ -1,5 +1,6 @@
 
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 const saltRounds = parseInt(process.env.CRYPTO_SALT_ROUND || 10, 10);
 const moment = require('moment');
 
