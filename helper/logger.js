@@ -67,7 +67,45 @@ const initLogger = () => {
   });
 };
 
+const socketLogger = (socket, next) => {
+  const logEvent = (eventName, data) => {
+    const message = `${eventName} - ${JSON.stringify(data)}`;
+    const clientIp = socket.handshake.address;
+    const meta = {
+      'service.name': process.env.SERVICE_NAME,
+      'service.version': process.env.VERSION,
+      'log.logger': 'socketio',
+      tags: ['audit-log'],
+      'event.name': eventName,
+      'client.address': clientIp,
+      'client.ip': clientIp,
+      'user.id': socket.userId || '',
+      'user.roles': socket.role ? [socket.role] : undefined,
+      'event.data': data ? JSON.stringify(data) : '',
+      'event.duration': 0,
+      'http.response.date': new Date().toISOString(),
+    };
+
+    const obj = {
+      context: 'service-info',
+      scope: 'audit-log',
+      message: message,
+      meta: meta,
+      ...apm.currentTraceIds,
+    };
+
+    Pino.info(obj);
+  };
+
+  socket.onAny((eventName, ...args) => {
+    logEvent(eventName, args);
+  });
+
+  next();
+};
+
 module.exports = {
   log,
-  initLogger
+  initLogger,
+  socketLogger
 };
